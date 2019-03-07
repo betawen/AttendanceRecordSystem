@@ -1,107 +1,99 @@
 <template>
   <div id="app">
-  <div class = 'menu'>
     <!-- 导航栏菜单 -->
-    <el-row>
-      <el-col :span="24" class="bg-purple-dark"><div class="grid-content">Attendance Record System</div></el-col>
+    <el-row class="bg-purple-dark">
+      <div>
+      <el-col :span="6" style="min-width: 85px!important;">
+        <div class="grid-content">Attendance Record</div>
+      </el-col>
+      <el-col :span="18">
+        <el-menu
+          :default-active="activeIndex2"
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+          background-color="#545c64"
+          text-color="#ffffff"
+          active-text-color="#409EFF">
+          <el-menu-item index="1" class="menu-item" @click="gotoLogin">管理员登录</el-menu-item>
+          <el-menu-item index="2" class="menu-item">消息中心</el-menu-item>
+          <el-menu-item index="3" class="menu-item">数据查询</el-menu-item>
+          <el-menu-item index="4" href="https://www.ele.me" class="menu-item">数据管理</el-menu-item>
+        </el-menu>
+      </el-col>
+      </div>
     </el-row>
-    <el-menu
-      :default-active="activeIndex2"
-      class="el-menu-demo"
-      mode="horizontal"
-      @select="handleSelect"
-      background-color="#545c64"
-      text-color="#ffffff"
-      active-text-color="#ffd04b">
-      <el-menu-item index="1" class="menu-item" @click="gotoLogin">管理员登录</el-menu-item>
-      <!-- <el-submenu index="2" class="menu-item">
-        <span slot="title" class="menu-item">组别</span>
-        <el-menu-item index="2-1" class="menu-item">item1</el-menu-item>
-        <el-menu-item index="2-2" class="menu-item">item2</el-menu-item>
-        <el-menu-item index="2-3" class="menu-item">item3</el-menu-item>
-      </el-submenu>
-      <el-submenu index="3" class="menu-item">
-        <span slot="title" class="menu-item">房间</span>
-        <el-menu-item index="2-1" class="menu-item">item1</el-menu-item>
-        <el-menu-item index="2-2" class="menu-item">item2</el-menu-item>
-        <el-menu-item index="2-3" class="menu-item">item3</el-menu-item>
-      </el-submenu> -->
-      <el-menu-item index="4" class="menu-item">消息中心</el-menu-item>
-      <el-menu-item index="4" class="menu-item">数据查询</el-menu-item>
-      <el-menu-item index="5" href="https://www.ele.me" class="menu-item">数据管理</el-menu-item>
-    </el-menu>
-    <!-- <br/> -->
     <br/>
-    <!-- 登录对话框 -->
-    <!-- <div :visible.sync = 'centerDialogVisible'>
-    <el-dialog
-      title="提示"
-      :visible.sync="centerDialogVisible"
-      width="100%"
-      center
-      class="login-dialog">
-        用 户 名 ：
-        <el-input
-        style="width:50%;"
-          placeholder="请输入用户名"
-          v-model="username">
-        </el-input>
-        <br/>
-        <br/>
-        用户密码：
-        <el-input
-        style="width:50%;"
-          placeholder="请输入密码"
-          show-password
-          v-model="passwd"
-          @change="login">
-        </el-input>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="centerDialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="centerDialogVisible = false, tableVisible = true">确 定</el-button>
-      </span>
-    </el-dialog>
-    </div> -->
-    <!-- 控制考勤记录显示 -->
-    <div :visible.sync = 'tableVisible'>
-    <el-table
-      :data="tableData"
-      :visible.sync="tableVisible"
-      style="width: 100%; text-align: center">
-      <!--<el-table-column-->
-        <!--prop="date"-->
-        <!--label="房间"-->
-        <!--width=" 150" class="menu-item">-->
-      <!--</el-table-column>-->
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width=" 150">
-      </el-table-column>
-      <el-table-column
-        prop="date"
-        label="日期"
-        width=" 150" >
-      </el-table-column>
-      <el-table-column
-        prop="timeArrive"
-        label="到达时间"
-        sortable
-        width=" 150" >
-      </el-table-column>
-      <el-table-column
-        prop="timeLeave"
-        label="离开时间"
-        sortable
-        width=" 150" >
-      </el-table-column>
-    </el-table>
-    </div>
-  </div>
+    <el-row class="bg-purple-dark-table">
+      <el-col :span="6" style="min-width: 85px!important;">
+        <div class="grid-content bg-purple">
+          <!--<el-radio-group v-model="isCollapse" style="margin-bottom: 20px; height: 66px">-->
+            <!--<el-radio-button :label="false">展开</el-radio-button>-->
+            <!--<el-radio-button :label="true">收起</el-radio-button>-->
+          <!--</el-radio-group>-->
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose">
+            <el-submenu index="1">
+              <template slot="title">
+                <span>组别</span>
+              </template>
+                <el-menu-item index="1-1">选项1</el-menu-item>
+                <el-menu-item index="1-2">选项2</el-menu-item>
+                <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-submenu>
+            <el-submenu index="2">
+              <template slot="title">
+                <span>房间</span>
+              </template>
+              <el-menu-item index="1-1">选项1</el-menu-item>
+              <el-menu-item index="1-2">选项2</el-menu-item>
+              <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </div>
+      </el-col>
+      <el-col :span="18">
+        <div :visible.sync = 'tableVisible'>
+          <el-table
+            :data="tableData"
+            :visible.sync="tableVisible"
+            style="width: 100%; text-align: center">
+            <!--<el-table-column-->
+            <!--prop="date"-->
+            <!--label="房间"-->
+            <!--width=" 150" class="menu-item">-->
+            <!--</el-table-column>-->
+            <el-table-column
+              prop="name"
+              label="姓名"
+              width=" 120">
+            </el-table-column>
+            <el-table-column
+              prop="date"
+              label="日期"
+              width=" 120" >
+            </el-table-column>
+            <el-table-column
+              prop="timeArrive"
+              label="到达时间"
+              sortable
+              width=" 120" >
+            </el-table-column>
+            <el-table-column
+              prop="timeLeave"
+              label="离开时间"
+              sortable
+              width=" 120" >
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
-<!--<script src="//unpkg.com/vue/dist/vue.js"></script>-->
-<!--<script src="//unpkg.com/element-ui@2.6.0/lib/index.js"></script>-->
 <script>
 export default {
   name: 'App',
@@ -110,7 +102,28 @@ export default {
       activeIndex2: '1',
       centerDialogVisible: false,
       tableVisible: true,
-      username: ''
+      username: '',
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        timeLeave: '上海市普陀区金沙江路 1518 弄',
+        timeArrive: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        timeLeave: '上海市普陀区金沙江路 1518 弄',
+        timeArrive: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        timeLeave: '上海市普陀区金沙江路 1518 弄',
+        timeArrive: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        timeLeave: '上海市普陀区金沙江路 1518 弄',
+        timeArrive: '上海市普陀区金沙江路 1518 弄'
+      }]
     }
   },
   methods: {
@@ -135,25 +148,33 @@ export default {
   width: 100%;
   align-self: center;
 }
-  .menu {
-    /*width: 90%;*/
+.el-menu-demo {
+    width: 90%;
+    /* border-radius: 4px; */
     text-align: center;
-  }
+}
+.el-menu--horizontal {
+    border-bottom: solid 0px #e6e6e6!important;
+}
   .menu-item {
-    font-size: 18px;
-    width:  150px;
+    /* border-radius: 4px; */
+    font-size: 16px;
+    width:  120px;
     text-align: center;
   }
   .el-table th{
+    border-radius: 2px;
     background:#545c64 !important;
     font-size: 16px;
     text-align: center;
     color: white;
+    height: 66px;
    }
    .el-table {
      width: 100%;
    }
    .el-row {
+    border-radius: 4px;
     margin-bottom: 2px;
     width: 100%;
     &:last-child {
@@ -161,17 +182,24 @@ export default {
     }
    }
   .bg-purple-dark {
+    border-radius: 4px;
     min-height: 66px;
     background: #545c64;
   }
   .grid-content {
-    border-radius: 4px;
+    /* border-radius: 4px; */
     margin-top: 20px;
+    margin-left: 10px;
     text-align: left;
-    font-size: 18px;
+    font-size: 16px;
+    /*min-width: 85px!important;*/
     color: white;
   }
-
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 100%;
+  /*min-width: 85px!important;*/
+  min-height: 400px;
+}
    /* /* .login-dialog { */
      /* margin-top: 5%; */
      /* width: 80%; */
