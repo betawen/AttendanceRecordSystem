@@ -2,6 +2,9 @@
   <div id="app">
   <div class = 'menu'>
     <!-- 导航栏菜单 -->
+    <el-row>
+      <el-col :span="24" class="bg-purple-dark"><div class="grid-content">Attendance Record System</div></el-col>
+    </el-row>
     <el-menu
       :default-active="activeIndex2"
       class="el-menu-demo"
@@ -11,7 +14,7 @@
       text-color="#ffffff"
       active-text-color="#ffd04b">
       <el-menu-item index="1" class="menu-item" @click="gotoLogin">管理员登录</el-menu-item>
-      <el-submenu index="2" class="menu-item">
+      <!-- <el-submenu index="2" class="menu-item">
         <span slot="title" class="menu-item">组别</span>
         <el-menu-item index="2-1" class="menu-item">item1</el-menu-item>
         <el-menu-item index="2-2" class="menu-item">item2</el-menu-item>
@@ -22,12 +25,12 @@
         <el-menu-item index="2-1" class="menu-item">item1</el-menu-item>
         <el-menu-item index="2-2" class="menu-item">item2</el-menu-item>
         <el-menu-item index="2-3" class="menu-item">item3</el-menu-item>
-      </el-submenu>
+      </el-submenu> -->
       <el-menu-item index="4" class="menu-item">消息中心</el-menu-item>
       <el-menu-item index="4" class="menu-item">数据查询</el-menu-item>
       <el-menu-item index="5" href="https://www.ele.me" class="menu-item">数据管理</el-menu-item>
     </el-menu>
-    <br/>
+    <!-- <br/> -->
     <br/>
     <!-- 登录对话框 -->
     <!-- <div :visible.sync = 'centerDialogVisible'>
@@ -68,29 +71,29 @@
       <!--<el-table-column-->
         <!--prop="date"-->
         <!--label="房间"-->
-        <!--width="200" class="menu-item">-->
+        <!--width=" 150" class="menu-item">-->
       <!--</el-table-column>-->
       <el-table-column
         prop="name"
         label="姓名"
-        width="200">
+        width=" 150">
       </el-table-column>
       <el-table-column
         prop="date"
         label="日期"
-        width="200" >
+        width=" 150" >
       </el-table-column>
       <el-table-column
         prop="timeArrive"
         label="到达时间"
         sortable
-        width="200" >
+        width=" 150" >
       </el-table-column>
       <el-table-column
         prop="timeLeave"
         label="离开时间"
         sortable
-        width="200" >
+        width=" 150" >
       </el-table-column>
     </el-table>
     </div>
@@ -129,7 +132,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  width: 80%;
+  width: 100%;
   align-self: center;
 }
   .menu {
@@ -138,7 +141,7 @@ export default {
   }
   .menu-item {
     font-size: 18px;
-    width: 200px;
+    width:  150px;
     text-align: center;
   }
   .el-table th{
@@ -148,8 +151,27 @@ export default {
     color: white;
    }
    .el-table {
-     width: 80%;
+     width: 100%;
    }
+   .el-row {
+    margin-bottom: 2px;
+    width: 100%;
+    &:last-child {
+      margin-bottom: 0;
+    }
+   }
+  .bg-purple-dark {
+    min-height: 66px;
+    background: #545c64;
+  }
+  .grid-content {
+    border-radius: 4px;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 18px;
+    color: white;
+  }
+
    /* /* .login-dialog { */
      /* margin-top: 5%; */
      /* width: 80%; */
