@@ -15,7 +15,8 @@
           background-color="#545c64"
           text-color="#ffffff"
           active-text-color="#409EFF">
-          <el-menu-item index="1" class="menu-item" @click="gotoLogin">管理员登录</el-menu-item>
+          <!-- <el-menu-item index="1" class="menu-item" @click="gotoLogin">管理员登录</el-menu-item> -->
+          <el-menu-item index="1" class="menu-item" ><a href="/login">管理员登录</a></el-menu-item>
           <el-menu-item index="2" class="menu-item">消息中心</el-menu-item>
           <el-menu-item index="3" class="menu-item">数据查询</el-menu-item>
           <el-menu-item index="4" href="https://www.ele.me" class="menu-item">数据管理</el-menu-item>
