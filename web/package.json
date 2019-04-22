@@ -1,8 +1,8 @@
 {
-  "name": "record",
+  "name": "web",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "betawen",
+  "author": "betawen <jing_find@163.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -14,7 +14,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "element-ui": "^2.6.1",
+    "element-ui": "^2.7.2",
+    "iview": "^3.4.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
