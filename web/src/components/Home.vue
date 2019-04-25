@@ -8,28 +8,33 @@
       prop="date"
       label="日期"
       sortable
-      width="180"
+      width="150"
     :formatter="formatter_date">
     </el-table-column>
     <el-table-column
       prop="name"
       label="姓名"
-      sortable
-      width="180">
+      width="150">
     </el-table-column>
     <el-table-column
       prop="time_arrive"
       label="到达时间"
+      width="150"
+      sortable
       :formatter="formatter_arrive">
     </el-table-column>
     <el-table-column
       prop="time_leave"
       label="离开时间"
+      width="150"
+      sortable
       :formatter="formatter_leave">
     </el-table-column>
     <el-table-column
       prop="time_work"
       label="工作时间"
+      width="150"
+      sortable
       :formatter="formatter_work">
     </el-table-column>
   </el-table>
@@ -39,7 +44,7 @@
 <script>
   export default {
     name: 'home',
-    data() {
+    data(){
       return {
         tableData: [{
           date: '1666932337981',
@@ -99,4 +104,7 @@
 
 <style scoped>
 
+  #home{
+    /*padding: 30px 5%;*/
+  }
 </style>

@@ -5,7 +5,7 @@ import Home from '../components/Home'
 import User from '../components/User'
 import Data from '../components/Data'
 import Search from '../components/Search'
-import Message from "../components/Message";
+import Message from "../components/Message"
 
 Vue.use(Router)
 
