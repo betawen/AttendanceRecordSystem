@@ -31,10 +31,6 @@ export default {
           name: '首页'
         },
         {
-          path: '/user',
-          name: '管理员登录'
-        },
-        {
           path: '/message',
           name: '消息中心'
         },
@@ -46,10 +42,14 @@ export default {
           path: '/data',
           name: '数据管理'
         },
+        {
+          path: '/user',
+          name: '管理员登录'
+        },
       ]
     }
   },
-  mounted() {
+  mounted(){
     document.title = this.title
   }
 }
@@ -58,36 +58,36 @@ export default {
 <style>
   #header{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     width: 100%;
-    height: 200px;
+    /*height: 100px;*/
     text-align: center;
   }
   .title{
     min-width: 350px;
     max-width: 600px;
     color: #333333;
-    padding-top: 20px;
+    padding: 10px 0;
     font-size: 18px;
     font-family: '微软雅黑';
   }
 
   #footer{
     width: 100%;
-    height: 150px;
+    height: auto;
     background-color: whitesmoke;
     text-align: center;
   }
   .footer{
-    padding-top: 60px;
+    padding: 10px 0;
     color: #999999;
     font-size: 14px;
     font-family: '微软雅黑';
   }
 
   .nav{
-    padding-top: 20px;
+    padding: 20px 0;
     min-width: 350px;
     max-width: 600px;
     display: flex;
@@ -104,10 +104,14 @@ export default {
   .menu a{
     font-size: 14px;
     color: #333333;
-    padding: 10px;
+    padding: 6px;
     text-decoration: none;
   }
   .router-link-exact-active, .router-link-active{
     color: #fcbb00!important;
+  }
+
+  section{
+    padding: 25px 5%;
   }
 </style>
