@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7139a5cd-3758-4ea2-8db3-f225eac04c93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/service/logic/data_logic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/logic/home_logic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/logic/message_logic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/logic/search_logic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/logic/user_logic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/routes/data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/routes/message.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/routes/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/test/data_test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/test/massage_test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/test/search_test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/test/user_test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/doc/start.md" beforeDir="false" afterPath="$PROJECT_DIR$/service/doc/user.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/service/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/User.vue" afterDir="false" />
-    </list>
+    <list default="true" id="7139a5cd-3758-4ea2-8db3-f225eac04c93" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -37,15 +18,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="38">
               <caret line="2" column="30" selection-end-line="2" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/service/logic/user_logic.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -101,8 +73,13 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/test/massage_test.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/service/model/user_db.js">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -195,6 +172,12 @@
               <item name="attendance-record-system" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="attendance-record-system" type="b2602c69:ProjectViewProjectNode" />
+              <item name="attendance-record-system" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -242,12 +225,12 @@
       <workItem from="1555585863782" duration="5562000" />
       <workItem from="1555925196731" duration="22357000" />
       <workItem from="1557039482721" duration="210000" />
-      <workItem from="1557048694567" duration="3490000" />
+      <workItem from="1557048694567" duration="3692000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50216000" />
+    <option name="totallyTimeSpent" value="50418000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -272,12 +255,12 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32958034" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32889345" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49893048" visible="true" weight="0.22950819" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49893048" visible="true" weight="0.22950819" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50106955" side_tool="true" weight="0.3285568" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.18930481" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.18930481" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -536,6 +519,9 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/service/test/massage_test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/model/user_db.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
