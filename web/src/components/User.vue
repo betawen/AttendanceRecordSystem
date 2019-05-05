@@ -14,7 +14,7 @@
   </el-form>
   <el-form :inline="false" :model="formInline" class="demo-form-inline" v-if="register">
     <el-form-item label="用户名称">
-      <el-input v-model="registerInline.user_id" placeholder="请输入管理员ID"></el-input>
+      <el-input v-model="registerInline.user_id" placeholder="请输入注册ID"></el-input>
     </el-form-item>
     <el-form-item label="用户密码">
       <el-input v-model="registerInline.password1" type="password" placeholder="请输入密码" @change="codeInputError=false"></el-input>
