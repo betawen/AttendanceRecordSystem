@@ -1,9 +1,7 @@
 'use strict'
 
-import User from "../../web/src/components/User";
-
 const dbUrl = require('../config/db_config').Urls.dbUrl;
-
+let utils = require('../utils/utils');
 
 let MongoClient = require('mongodb').MongoClient;
 let ERROR_SET = require('../config/error_set');
@@ -50,6 +48,20 @@ class userDB {
             return undefined;
         }
         return {user_record}
+    }
+
+    getUserRecordDefault(params, options) {
+        let date = utils.getDateNumber() - 7;
+        let filter = {date: {$gte: date}};
+        if(undefined !== params) {
+            filter = params;
+        }
+        let limit = 50;
+        if(undefined !== options) {
+            limit = options.limit;
+        }
+        let user_record_list = this.db.collection('user_record').find(filter).limit(limit).sort({updateTime: -1});
+        return {user_record_list}
     }
 
     getUsersByGroupId(params, options) {
@@ -221,3 +233,5 @@ class userDB {
         })
     }
 }
+
+module.exports = userDB;
