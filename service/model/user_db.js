@@ -1,10 +1,13 @@
 'use strict'
 
+import User from "../../web/src/components/User";
+
 const dbUrl = require('../config/db_config').Urls.dbUrl;
 
 
 let MongoClient = require('mongodb').MongoClient;
-let ERROR_SET = require('../config/error_set')
+let ERROR_SET = require('../config/error_set');
+let logger = require('winston').loggers.get('UserDBLogger');
 
 
 class userDB {
@@ -91,5 +94,130 @@ class userDB {
             user_record_list.push(user_record);
         }
         return {user_record_list}
+    }
+
+    addOneUer(user) {
+        if(undefined === user || user.user_id) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER);
+        }
+        this.db.collection('user').insertOne(user, (err, res) => {
+            if(err) {
+                throw err;
+            }else {
+                logger.info(`[USER_DB] ADD USER => ${user.user_id}`);
+            }
+        })
+    }
+
+    addManyUser(user_list) {
+        if(undefined === user_list || undefined === user_list[0]) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER)
+        }
+        this.db.collection('user').insertMany(user_list, (err, res) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] ADD USERS => ${res.insertedCount}`);
+            }
+        })
+    }
+
+    deleteOneUserInfoByUserId(params) {
+        if(undefined === params || undefined === params.user_id || params.username) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID)
+        }
+
+        let whereStr = {};
+        if(params.user_id){
+            whereStr = {user_id: params.user_id}
+        }else if (params.username){
+            whereStr = {username: params.username}
+        }
+        this.db.collection('user', (err, obj) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] DELETE USER => ${whereStr}`);
+            }
+        })
+    }
+
+    deleteOneUserRecordByUserId(params) {
+        if(undefined === params || undefined === params.user_id) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID)
+        }
+
+        let whereStr = {user_id: params.user_id};
+        this.db.collection('user_record').deleteOne(whereStr, (err, obj) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] DELETE USER => ${whereStr}`);
+            }
+        })
+    }
+
+    deleteManyUserInfoByGrade(params) {
+        if(undefined === params || undefined === params.grade_id) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_GRADE_ID)
+        }
+
+        let whereStr = {grade_id: params.grade_id};
+        this.db.collection('user').deleteMany(whereStr, (err, obj) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] DELETE USER COUNT => ${obj.result.n}`);
+            }
+        })
+    }
+
+    deleteManyUserRecordByGrade(params) {
+        if(undefined === params || undefined === params.grade_id) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_GRADE_ID)
+        }
+
+        let whereStr = {grade_id: params.grade_id};
+        this.db.collection('user_record').deleteMany(whereStr, (err, obj) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] DELETE USER COUNT => ${obj.result.n}`);
+            }
+        })
+    }
+
+    updateOneUserInfo(user, params) {
+        if(undefined === user || undefined === user.user_id){
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID)
+        }
+        if(undefined === params) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER)
+        }
+        let whereStr = {user_id: params.user_id}
+        this.db.collection('user').updateOne(whereStr, params, true, (err, res) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] UPDATE USER => ${user.user_id}`)
+            }
+        })
+    }
+
+    updateOneUserRecord(user, params) {
+        if(undefined === user || undefined === user.user_id){
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID)
+        }
+        if(undefined === params) {
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER)
+        }
+        let whereStr = {user_id: params.user_id}
+        this.db.collection('user_record').updateOne(whereStr, params, true, (err, res) => {
+            if(err) {
+                throw err
+            }else {
+                logger.info(`[USER_DB] UPDATE USER => ${user.user_id}`)
+            }
+        })
     }
 }
