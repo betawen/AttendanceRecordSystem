@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7139a5cd-3758-4ea2-8db3-f225eac04c93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/service/doc/user_table.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/utils/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/doc/user.md" beforeDir="false" afterPath="$PROJECT_DIR$/service/doc/user_API.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/logic/home_logic.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/doc/user_table.md" beforeDir="false" afterPath="$PROJECT_DIR$/service/doc/user_table.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/logic/user_logic.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/logic/user_logic.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/model/user_db.js" beforeDir="false" afterPath="$PROJECT_DIR$/service/model/user_db.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,20 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service/model/user_db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
+            <state relative-caret-position="266">
               <caret line="63" column="33" lean-forward="true" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/service/logic/user_logic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+            <state relative-caret-position="209">
+              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -79,8 +74,8 @@
         <entry file="file://$PROJECT_DIR$/service/doc/user_table.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="399">
-                <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+              <first_editor relative-caret-position="418">
+                <caret line="22" column="23" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="23" />
               </first_editor>
               <second_editor />
             </state>
@@ -191,10 +186,10 @@
         <option value="$PROJECT_DIR$/service/config/user_message.js" />
         <option value="$PROJECT_DIR$/service/config/error_set.js" />
         <option value="$PROJECT_DIR$/service/logic/home_logic.js" />
-        <option value="$PROJECT_DIR$/service/doc/user_table.md" />
         <option value="$PROJECT_DIR$/service/utils/utils.js" />
-        <option value="$PROJECT_DIR$/service/logic/user_logic.js" />
         <option value="$PROJECT_DIR$/service/model/user_db.js" />
+        <option value="$PROJECT_DIR$/service/doc/user_table.md" />
+        <option value="$PROJECT_DIR$/service/logic/user_logic.js" />
       </list>
     </option>
   </component>
@@ -282,12 +277,12 @@
       <workItem from="1555585863782" duration="5562000" />
       <workItem from="1555925196731" duration="22357000" />
       <workItem from="1557039482721" duration="210000" />
-      <workItem from="1557048694567" duration="24494000" />
+      <workItem from="1557048694567" duration="25308000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71220000" />
+    <option name="totallyTimeSpent" value="72034000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -646,16 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/doc/user_table.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="399">
-            <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/service/logic/data_logic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -670,17 +655,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/logic/user_logic.js">
+    <entry file="file://$PROJECT_DIR$/service/model/user_db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+        <state relative-caret-position="266">
+          <caret line="63" column="33" lean-forward="true" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/model/user_db.js">
+    <entry file="file://$PROJECT_DIR$/service/doc/user_table.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="418">
+            <caret line="22" column="23" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="23" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/logic/user_logic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="63" column="33" lean-forward="true" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+        <state relative-caret-position="209">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
         </state>
       </provider>
     </entry>
