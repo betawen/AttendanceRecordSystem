@@ -26,3 +26,15 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
         db.close();
     });
 });
+
+MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+    if (err) throw err;
+    let dbo = db.db("user");
+    let myobj =  users
+    // batchwrite
+    dbo.collection("user_record").insertMany(myobj, function(err, res) {
+        if (err) throw err;
+        console.log("Count of new users: " + res.insertedCount);
+        db.close();
+    });
+});

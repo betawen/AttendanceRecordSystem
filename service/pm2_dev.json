@@ -1,0 +1,15 @@
+{
+  "name": "record_dev",
+  "script": "./bin/www",
+  "cwd": "./",
+  "error_file": "./logs/pm2/record-err.log",
+  "out_file": "./logs/pm2/record-out.log",
+  "log_date_format" : "MM-DD HH:mm:ss.SSS Z",
+  "instances": "1",
+  "merge_logs": true,
+  "port": 8011,
+  "env": {
+    "NODE_ENV": "development",
+    "NODE_CONFIG_DIR": "./config"
+  }
+}

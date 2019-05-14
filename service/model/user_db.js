@@ -11,7 +11,7 @@ let logger = require('winston').loggers.get('UserDBLogger');
 class userDB {
     constructor() {
         this.index = 'user_id'
-        MongoClient.connect(dbUrl + 'user', (err, db) => {
+        MongoClient.connect(dbUrl + '/user', (err, db) => {
             if(err){
                 throw err
             }else {
@@ -52,7 +52,8 @@ class userDB {
 
     getUserRecordDefault(params, options) {
         let date = utils.getDateNumber() - 7;
-        let filter = {date: {$gte: date}};
+        // let filter = {date: {$gte: date}};
+        let filter;
         if(undefined !== params) {
             filter = params;
         }
@@ -60,8 +61,7 @@ class userDB {
         if(undefined !== options) {
             limit = options.limit;
         }
-        let user_record_list = this.db.collection('user_record').find(filter).limit(limit).sort({updateTime: -1});
-        return {user_record_list}
+        return this.db.collection('user_record').find(filter).limit(limit).sort({updateTime: -1}).toArray();
     }
 
     getUsersByGroupId(params, options) {
