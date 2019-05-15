@@ -1,3 +1,4 @@
+let md5 = require('md5')
 let users = [
   {
     "user_id": "betaGo",
@@ -6,7 +7,7 @@ let users = [
     "room_id": null,
     "student_id": "U200000000",
     "is_manager": true,
-    "passwd": "123456",
+    "passwd": md5("123456"),
     mac_id: 'test_user1'
   },
   {

@@ -14,3 +14,7 @@ module.exports.DB_ERROR = {
     NO_USER: {message: 'THERE IS NO USER', status: 603},
     NO_GRADE_ID: {message: 'THERE IS NO GRADE_ID', status: 604},
 }
+
+module.exports.LOGIC_ERROR = {
+    WRONG_INVITE_CODE: {message: 'INVITE CODE INVALID!', status: 650}
+}

@@ -2,7 +2,7 @@
 <div id="home">
   <el-table
     :data="tableData"
-    style="width: 100%"
+
     :default-sort = "{prop: 'date', order: 'descending'}">
     <el-table-column
       prop="date"

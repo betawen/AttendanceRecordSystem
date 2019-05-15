@@ -26,11 +26,8 @@ class userDB {
         let user_id = params.user_id;
         if (options) {}
         let filter = {user_id: user_id};
-        let user_info = this.db.collection('user').find(filter);
-        if(undefined === user_info) {
-            return undefined;
-        }
-        return {user_info}
+
+        return this.db.collection('user').find(filter).toArray();
     }
 
     getUserRecordById(params, options) {
@@ -206,12 +203,12 @@ class userDB {
         if(undefined === params) {
             throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER)
         }
-        let whereStr = {user_id: params.user_id}
-        this.db.collection('user').updateOne(whereStr, params, true, (err, res) => {
+        let whereStr = {user_id: user.user_id}
+        this.db.collection('user').updateOne(whereStr, {$set: params}, (err, res) => {
             if(err) {
                 throw err
             }else {
-                logger.info(`[USER_DB] UPDATE USER => ${user.user_id}`)
+                logger.info(`[USER_DB] UPDATE USER => ${JSON.stringify(res, null, 4)}`)
             }
         })
     }

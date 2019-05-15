@@ -8,8 +8,8 @@
       <el-input v-model="formInline.password" type="password" placeholder="请输入密码"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">登录</el-button>
-      <el-button type="primary" @click="register=true">注册</el-button>
+      <el-button type="primary" @click="submitToLogin">登录</el-button>
+      <el-button type="primary" @click="register=true">注册管理</el-button>
     </el-form-item>
   </el-form>
   <el-form :inline="false" :model="formInline" class="demo-form-inline" v-if="register">
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+  // import Vue from 'vue'
   export default {
     name: "User",
     data() {
@@ -59,7 +60,20 @@
       }
     },
     methods: {
-      onSubmit() {
+      submitToLogin() {
+        this.$http.post('/api/user/login', {user_id: this.formInline.user_id, passwd: this.formInline.password})
+          .then(res => {
+            console.log('status:' + res.body.status);
+            if(res.body.status === 200){
+              this.$message.success('登录成功');
+              window.location.href = '/home';
+            }else if(res.body.status === 401) {
+              this.$message.warning('密码输入错误');
+            }
+          })
+          .catch(err => {
+            this.$message(err)
+          })
         console.log(this.formInline,'submit!');
       },
       submitToRegister() {
@@ -68,11 +82,22 @@
           console.log('ERROR!')
           return ;
         }
-        if(this.registerInline.inviteCode){
-          this.inviteCodeInvalid = true
-          return ;
+        let params = {
+          user_id: this.registerInline.user_id,
+          passwd: this.registerInline.password2,
+          invite_code: this.registerInline.inviteCode
         }
-        console.log(' NO ERROR!')
+        this.$http.post('/api/user/register', params)
+          .then(res => {
+            console.log('register status:' + res.status)
+            if(res.status === 200) {
+              this.$message.success('注册成功');
+              this.register = false;
+            }
+          })
+          .catch(err => {
+            this.$message.error(err)
+          })
       }
     }
   }

@@ -9,7 +9,8 @@ let MongoClient = require('mongodb').MongoClient;
 
 // import users from '../config/user_message'
 
-let users = require('../config/user_message').users;
+let users = require('../config/user_info').users;
+let user_record = require('../config/user_record').user_record
 
 const dbUrl = 'mongodb://localhost:27017/';
 
@@ -30,7 +31,7 @@ MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
 MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
     let dbo = db.db("user");
-    let myobj =  users
+    let myobj =  user_record
     // batchwrite
     dbo.collection("user_record").insertMany(myobj, function(err, res) {
         if (err) throw err;

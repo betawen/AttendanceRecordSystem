@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import vueResource from 'vue-resource'
 // import iView from 'iview'
 // import 'iview/dist/styles/iview.css';
 import vRouter from 'vue-router'
@@ -11,6 +12,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 // Vue.use(iView)
 Vue.use(vRouter)
 Vue.use(ElementUI)
+Vue.use(vueResource)
 
 Vue.config.productionTip = false
 

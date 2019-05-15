@@ -1,7 +1,7 @@
 <template>
   <div id="record">
     <div id="header">
-      <h1 class="title">WIFI智能考勤系统</h1>
+      <h1 class="title"><router-link to="/">WIFI智能考勤系统</router-link></h1>
       <nav class="nav">
         <div class="menu" v-for="value in routes">
           <router-link :to="value.path">{{value.name}}</router-link>
@@ -57,9 +57,9 @@ export default {
 
 <style>
   #header{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*flex-wrap: wrap;*/
     width: 100%;
     /*height: 100px;*/
     text-align: center;
@@ -67,10 +67,12 @@ export default {
   .title{
     min-width: 350px;
     max-width: 600px;
-    color: #333333;
     padding: 10px 0;
     font-size: 18px;
     font-family: '微软雅黑';
+    a {
+      text-decoration: none!important;
+    }
   }
 
   #footer{
@@ -87,10 +89,11 @@ export default {
   }
 
   .nav{
-    padding: 20px 0;
+    padding: 20px auto;
     min-width: 350px;
     max-width: 600px;
     display: flex;
+    justify-content: center;
   }
   .menu{
     box-sizing: border-box;
@@ -109,6 +112,7 @@ export default {
   }
   .router-link-exact-active, .router-link-active{
     color: #fcbb00!important;
+    text-decoration: none!important;
   }
 
   section{

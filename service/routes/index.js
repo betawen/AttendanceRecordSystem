@@ -1,3 +1,4 @@
+
 let express = require('express');
 let router = express.Router();
 let logger = require('winston').loggers.get('UserRouter');
@@ -23,6 +24,47 @@ router.get('/home/record', (req, res) => {
       .catch(err => {
         logger.error(err)
       })
+})
+
+router.post('/user/login', (req, res) => {
+  console.log(JSON.stringify(req.body, null, 4))
+  let params = {
+    user_id: req.body.user_id,
+    passwd: req.body.passwd
+  }
+  UserLogic.userLoginLogic(params)
+      .then(user => {
+        if(user){
+          res.json({status: 200, msg: 'ok'})
+        }
+        else{
+          res.json({status: 401, msg: 'forbidden'})
+        }
+      })
+      .catch(err => {
+          logger.error(err)
+          throw err
+      })
+})
+
+router.post('/user/register', (req, res) => {
+    console.log(JSON.stringify(req.body, null, 4))
+    let params = {
+        user_id: req.body.user_id,
+        passwd: req.body.passwd,
+        invite_code: req.body.invite_code
+    }
+
+    UserLogic.userRegisterLogic(params)
+        .then(result => {
+            if(result) {
+                res.json({status: 200, msg: 'ok'})
+            }
+        })
+        .catch(err => {
+            logger.error(err)
+            throw err
+        })
 })
 
 module.exports = router;
