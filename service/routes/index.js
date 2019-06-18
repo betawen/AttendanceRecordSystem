@@ -2,6 +2,7 @@
 let express = require('express');
 let router = express.Router();
 let logger = require('winston').loggers.get('UserRouter');
+let ERROR_SET = require('../config/error_set');
 
 let UserLogic = require('../logic/user_logic');
 
@@ -17,14 +18,40 @@ router.get('/', (req, res) => {
 router.get('/home/record', (req, res) => {
   let params = req.params;
   UserLogic.getDefaultUserRecordLogic(params)
-      .then(record_list => {
+      .then(res_list => {
         // console.log('/home/record', record_list)
-        res.json(record_list.record_list)
+        res.json(res_list)
       })
       .catch(err => {
+          console.log('error'+err);
         logger.error(err)
       })
 })
+
+// router.post('/user/get_user_name', (req, res) => {
+//
+//     if(undefined === req.body.mac_id) {
+//         throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID)
+//     }
+//
+//     let params = {
+//         mac_id: req.body.mac_id
+//     }
+//
+//     UserLogic.getUserName(params)
+//         .then(user => {
+//             if(user) {
+//                 res.json(user)
+//             }else {
+//                 res.json(undefined)
+//             }
+//         })
+//         .catch(err => {
+//             logger.error(err)
+//             throw err;
+//         })
+//
+// })
 
 router.post('/user/login', (req, res) => {
   console.log(JSON.stringify(req.body, null, 4))
@@ -66,5 +93,26 @@ router.post('/user/register', (req, res) => {
             throw err
         })
 })
+
+router.post('/user/attend', function(req, res, next) {
+
+    if(undefined === req.body.mac_id) {
+        throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID)
+    }
+
+    let params = {
+        mac_id: req.body.mac_id,
+    }
+
+    params.msg = req.body.msg | 0;
+    UserLogic.userAttendLogic(params)
+        .then(result => {
+            res.json(result)
+        })
+        .catch(err => {
+            logger.error(err)
+            throw err
+        })
+});
 
 module.exports = router;

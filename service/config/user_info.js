@@ -41,7 +41,7 @@ let users = [
     "room_id": null,
     "student_id": "U200000000",
     mac_id: 'test_user5'
-  }
+  },
 ];
 
 exports.users = users;

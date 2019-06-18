@@ -8,7 +8,7 @@ let ERROR_SET = require('../config/error_set');
 let logger = require('winston').loggers.get('UserDBLogger');
 
 
-class userDB {
+class userRecordDB {
     constructor() {
         this.index = 'user_id'
         MongoClient.connect(dbUrl + '/user', (err, db) => {
@@ -18,16 +18,6 @@ class userDB {
                 this.db = db.db('user');
             }
         })
-    }
-    getUserInfoById(params, options) {
-        if(undefined === params || params.user_id === undefined) {
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID);
-        }
-        let user_id = params.user_id;
-        if (options) {}
-        let filter = {user_id: user_id};
-
-        return this.db.collection('user').find(filter).toArray();
     }
 
     getUserRecordById(params, options) {
@@ -47,15 +37,20 @@ class userDB {
         return {user_record}
     }
 
-    getUserNameByMacId(params, options) {
+    getUserRecordByMacId(params, options) {
         if(undefined === params || params.mac_id === undefined) {
-            throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID);
+            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID);
         }
-        return this.db.collection('user').find(params).toArray();
+
+        let user_record = this.db.collection('user_record').find(params).limit(50);
+        if(undefined === user_record) {
+            return undefined;
+        }
+        return this.db.collection('user_record').find(params).limit(50).sort({update_time: -1}).toArray();
     }
 
     getUserRecordDefault(params, options) {
-        // let date = utils.getDateNumber() - 7;
+        let date = utils.getDateNumber() - 7;
         // let filter = {date: {$gte: date}};
         let filter;
         if(undefined !== params) {
@@ -65,75 +60,21 @@ class userDB {
         if(undefined !== options) {
             limit = options.limit;
         }
-        return this.db.collection('user_record').find(filter).limit(limit).sort({update_time: -1}).toArray();
+        return this.db.collection('user_record').find(filter).limit(limit).sort({updateTime: -1}).toArray();
     }
 
-    getUsersByGroupId(params, options) {
-        if(undefined === params || undefined === params.group_id) {
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_GROUP_ID);
+    insertOneUserRecord(params) {
+        if (undefined === params.mac_id) {
+            throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID);
         }
-        let group_id = params.group_id;
-        let filter = {group_id: group_id};
-        let user_info_list = this.db.find(filter);
 
-        let user_record_list = [];
-        for(let user of user_info_list) {
-            if(undefined === user.user_id) continue;
-            let user_record = this.getUserRecordById(user, options);
-            if(undefined === user_record){
-                continue;
-            }else {
-                user_record = user_record.user_record;
-            }
-            user_record_list.push(user_record);
-        }
-        return {user_record_list}
-    }
 
-    getUsersByRoomId(params, options) {
-        if(undefined === params || undefined === params.room_id) {
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_GROUP_ID);
-        }
-        let room_id = params.room_id;
-        let filter = {room_id: room_id};
-        let user_info_list = this.db.find(filter);
-
-        let user_record_list = [];
-        for(let user of user_info_list) {
-            if(undefined === user.user_id) continue;
-            let user_record = this.getUserRecordById(user, options);
-            if(undefined === user_record){
-                continue;
-            }else {
-                user_record = user_record.user_record;
-            }
-            user_record_list.push(user_record);
-        }
-        return {user_record_list}
-    }
-
-    addOneUer(user) {
-        if(undefined === user || user.user_id) {
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER);
-        }
-        this.db.collection('user').insertOne(user, (err, res) => {
+        this.db.collection('user_record').insertOne(params, (err, res) => {
             if(err) {
                 throw err;
             }else {
-                logger.info(`[USER_DB] ADD USER => ${user.user_id}`);
-            }
-        })
-    }
-
-    addManyUser(user_list) {
-        if(undefined === user_list || undefined === user_list[0]) {
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER)
-        }
-        this.db.collection('user').insertMany(user_list, (err, res) => {
-            if(err) {
-                throw err
-            }else {
-                logger.info(`[USER_DB] ADD USERS => ${res.insertedCount}`);
+                logger.info(`[USER_DB_RECORD] ADD USER RECORD => ${params.mac_id}`);
+                return;
             }
         })
     }
@@ -237,22 +178,20 @@ class userDB {
         })
     }
 
-    updateOneUserRecordIn(user, params) {
-        if(undefined === user || undefined === user.user_id){
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID)
+    updateOneUserRecordOut(params, options) {
+        if(undefined === params || undefined === options.update_time){
+            throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID)
         }
-        if(undefined === params) {
-            throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER)
-        }
-        let whereStr = {user_id: params.user_id}
-        this.db.collection('user_record').updateOne(whereStr, params, true, (err, res) => {
+        let whereStr = options;
+        this.db.collection('user_record').updateOne(whereStr, {$set: params}, true, (err, res) => {
             if(err) {
                 throw err
             }else {
-                logger.info(`[USER_DB] UPDATE USER => ${user.user_id}`)
+                logger.info(`[USER_DB] UPDATE USER => ${params.update_time}`)
+                return res;
             }
         })
     }
 }
 
-module.exports = userDB;
+module.exports = userRecordDB;

@@ -5,7 +5,7 @@ let MongoClient = require('mongodb').MongoClient;
 
 let DBName = ['user', 'user_test'];
 let tables = {
-    user: ['user', 'user_record'],
+    user: ['user', 'user_record','user_mac'],
     user_record: ['user_record']
 }
 

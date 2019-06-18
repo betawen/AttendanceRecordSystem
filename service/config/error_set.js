@@ -18,3 +18,7 @@ module.exports.DB_ERROR = {
 module.exports.LOGIC_ERROR = {
     WRONG_INVITE_CODE: {message: 'INVITE CODE INVALID!', status: 650}
 }
+
+module.exports.REQ_ERROR = {
+    USER_ATTEND_WITHOUT_MAC_ID: { message: 'USER_ATTEND_WITHOUT_MAC_ID', status: 680}
+}

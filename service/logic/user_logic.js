@@ -1,25 +1,49 @@
 'use strict'
 
 let userDB = new (require('../model/user_db'))();
+let userRecordDB = new (require("../model/user_record_db"))();
 let md5 = require('md5')
-let logger = require('winston').loggers.get('HomeLogic');
+let logger = require('winston').loggers.get('UserLogic');
 let ERROR_SET = require('../config/error_set')
 
 const INVITE_CODE = md5('SeedClass2016');
 
-exports.getDefaultUserRecordLogic = async function (params, options) {
+exports.getDefaultUserRecordLogic = async function () {
     let record_list = await userDB.getUserRecordDefault();
 
     // console.log(record_list)
 
-    return {record_list};
+    let res_list = [];
+
+    for (let record of record_list) {
+
+        if(undefined === record.mac_id)
+            continue;
+
+        let param = {mac_id: record.mac_id}
+
+        let user = await userDB.getUserNameByMacId(param);
+        let res = record;
+        if (undefined === user[0] || undefined === user[0].user_name){
+            res['user_name'] = 'unknown';
+        }else {
+            res['user_name'] = user[0].user_name;
+        }
+
+        res_list.push(res)
+    }
+    // console.log(record_list)
+
+    return {res_list};
 
 }
 
 exports.userLoginLogic = async function (params, options) {
     let user = await  userDB.getUserInfoById(params)
+    // if(md5(params.passwd) === user[0].passwd) {
     if(user[0].is_manager && md5(params.passwd) === user[0].passwd) {
-        return true
+            return true
+        // }
     }
     return false;
 }
@@ -39,6 +63,52 @@ exports.userRegisterLogic = async function (params, option) {
         return res[0].is_manager;
     }
     throw ERROR_SET.createResponseError(ERROR_SET.LOGIC_ERROR.WRONG_INVITE_CODE)
+
+}
+
+
+exports.userAttendLogic = async function (params, option) {
+
+    if(undefined === params.mac_id) {
+        throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID);
+    }
+
+    if(params.msg === 1) {
+        let time = new Date().getTime();
+        let updateObj = {};
+        let user_list = await userRecordDB.getUserRecordByMacId({mac_id: params.mac_id});
+        let options = {
+            update_time: user_list[0].update_time
+        };
+        updateObj['mac_id'] = params.mac_id;
+        updateObj['leave_time'] = time;
+        updateObj['update_time'] = time;
+        userRecordDB.updateOneUserRecordOut(updateObj, options);
+        return {status:200}
+    } else {
+        let time = new Date().getTime();
+        let newObj = {};
+        newObj['mac_id'] = params.mac_id;
+        newObj['arrive_time'] = time;
+        newObj['update_time'] = time;
+        userRecordDB.insertOneUserRecord(newObj);
+        return {status:200}
+    }
+}
+
+exports.getUserName = async function (params) {
+
+    if(undefined === params.mac_id) {
+        throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID)
+    }
+
+    let userInfo = await userDB.getUserNameByMacId(params);
+
+    if(undefined === userInfo) {
+        return undefined;
+    }
+
+    return userInfo;
 
 }
 
