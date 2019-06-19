@@ -7,7 +7,7 @@
     <el-table-column
       prop="user_name"
       label="姓名"
-      width="150">
+      width="300">
     </el-table-column>
     <!--<el-table-column-->
       <!--prop="groupID"-->
@@ -22,7 +22,7 @@
     <el-table-column
       prop="mac_id"
       label="设备地址"
-      width="150">
+      width="300">
     </el-table-column>
     <!--<el-table-column-->
       <!--label="操作"-->
@@ -94,10 +94,11 @@
           console.log('trying to get user info ...')
           this.$http.get('/api/user/user_info')
             .then(res => {
+              console.log('no error while getting user info ...');
               this.tableData = res.body.res_list;
             })
             .catch(err => {
-              console.log('error while getting user info ...')
+              console.log('error while getting user info ...');
               console.log(err)
             })
         }

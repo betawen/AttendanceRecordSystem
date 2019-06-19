@@ -13,6 +13,7 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: 'http://182.254.220.125:3000',
+        // target: 'http://localhost:3000',
         changeOrigin: true,               // needed for virtual hosted sites
         pathRewrite: {
           '^/api': ''

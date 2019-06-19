@@ -37,7 +37,7 @@ class userDB {
         //     limit = options.limit;
         // }
 
-        return this.db.collection('user').find().toArray();
+        return this.db.collection('user_mac').find().toArray();
     }
 
     getUserRecordById(params, options) {

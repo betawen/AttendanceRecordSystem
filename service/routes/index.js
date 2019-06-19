@@ -29,14 +29,15 @@ router.get('/home/record', (req, res) => {
       })
 })
 
-router.get('/user/user_info', (res, req) => {
+router.get('/user/user_info', (req, res) => {
 
     DataLogic.getUserInfo()
         .then(res_list => {
+            // console.log(res_list)
             res.json(res_list)
         })
         .catch(err => {
-            console.log('err while getting user_info')
+            console.log('[router] err while getting user_info')
             logger.error(err);
         })
 })
