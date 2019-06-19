@@ -90,11 +90,11 @@ exports.userAttendLogic = async function (params, option) {
         return {status:200, msg: 'user record update'}
     } else {
         let time = new Date().getTime();
-        let param = {mac_id: params.mac_id.toLocaleLowerCase()};
-        let user = await userDB.getUserNameByMacId(param);
-        if(undefined === user){
-            return {status:200, msg:'user not exist'};
-        }
+        // let param = {mac_id: params.mac_id.toLocaleLowerCase()};
+        // let user = await userDB.getUserNameByMacId(param);
+        // if(undefined === user){
+        //     return {status:200, msg:'user not exist'};
+        // }
         let newObj = {};
         newObj['mac_id'] = params.mac_id.toLocaleLowerCase();
         newObj['arrive_time'] = time;
