@@ -42,7 +42,7 @@ class Echo(Protocol):
         for oneData in data.split('\n'):
             if len(oneData) < 10:
                continue
-            mac = oneData.split(',')[0][4:]
+            mac = oneData.split(',')[0][4:].replace('0x','').replace('.',':')
             rssi = oneData.split(',')[1][5:]
             csvWriter.writerow([self.transport.getPeer().host, mac, rssi, time.asctime(time.localtime(time.time()))])
             if mac in status.keys():
