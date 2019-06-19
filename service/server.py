@@ -48,9 +48,9 @@ class Echo(Protocol):
             if mac in status.keys():
                 if (time.time() - MacLastTime[mac]) >= 300:
                     status[mac] = (status[mac] + 1) % 2
+                    MacLastTime[mac] = time.time()
             else:
                 status[mac] = 0
-            MacLastTime[mac] = time.time()
             data = {'mac_id': mac, 'msg': status[mac]}
             requests.post('http://127.0.0.1:3000/user/attend', data)
         # 接收数据的函数，当有数据到达时被回调
