@@ -30,6 +30,16 @@ class userDB {
         return this.db.collection('user').find(filter).toArray();
     }
 
+    getUserInfo(options) {
+
+        // let limit;
+        // if (undefined !== options.limit) {
+        //     limit = options.limit;
+        // }
+
+        return this.db.collection('user').find().toArray();
+    }
+
     getUserRecordById(params, options) {
         if(undefined === params || params.user_id === undefined) {
             throw ERROR_SET.createResponseError(ERROR_SET.DB_ERROR.NO_USER_ID);

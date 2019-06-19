@@ -78,7 +78,7 @@
           .then(res => {
             console.log('no error ...')
             this.tableData = res.body.res_list;
-            console.log(res.body.res_list);
+            // console.log(res.body.res_list);
             return;
           })
           .catch(err => {

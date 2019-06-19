@@ -5,6 +5,7 @@ let logger = require('winston').loggers.get('UserRouter');
 let ERROR_SET = require('../config/error_set');
 
 let UserLogic = require('../logic/user_logic');
+let DataLogic = require('../logic/data_logic')
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -23,9 +24,21 @@ router.get('/home/record', (req, res) => {
         res.json(res_list)
       })
       .catch(err => {
-          console.log('error'+err);
+          console.log('error while getting record ...');
         logger.error(err)
       })
+})
+
+router.get('/user/user_info', (res, req) => {
+
+    DataLogic.getUserInfo()
+        .then(res_list => {
+            res.json(res_list)
+        })
+        .catch(err => {
+            console.log('err while getting user_info')
+            logger.error(err);
+        })
 })
 
 // router.post('/user/get_user_name', (req, res) => {

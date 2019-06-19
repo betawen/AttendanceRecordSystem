@@ -76,23 +76,26 @@ exports.userAttendLogic = async function (params, option) {
     if(params.msg === 1) {
         let time = new Date().getTime();
         let updateObj = {};
-        let user_list = await userRecordDB.getUserRecordByMacId({mac_id: params.mac_id});
+        let user_list = await userRecordDB.getUserRecordByMacId({mac_id: params.mac_id.toLocaleLowerCase()});
+        if(undefined === user_list[0]){
+            return {msg:'user did not come', status: 200}
+        }
         let options = {
             update_time: user_list[0].update_time
         };
-        updateObj['mac_id'] = params.mac_id;
+        updateObj['mac_id'] = params.mac_id.toLocaleLowerCase();
         updateObj['leave_time'] = time;
         updateObj['update_time'] = time;
         userRecordDB.updateOneUserRecordOut(updateObj, options);
-        return {status:200}
+        return {status:200, msg: 'user record update'}
     } else {
         let time = new Date().getTime();
         let newObj = {};
-        newObj['mac_id'] = params.mac_id;
+        newObj['mac_id'] = params.mac_id.toLocaleLowerCase();
         newObj['arrive_time'] = time;
         newObj['update_time'] = time;
         userRecordDB.insertOneUserRecord(newObj);
-        return {status:200}
+        return {status:200, msg: 'user record add'}
     }
 }
 
