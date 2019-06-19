@@ -43,10 +43,12 @@ class Echo(Protocol):
             if len(oneData) < 10:
                continue
             mac = oneData.split(',')[0][4:].replace('0x','').replace('.',':')
+            if mac == 'FF:FF:FF:FF:FF:FF':
+                continue
             rssi = oneData.split(',')[1][5:]
             csvWriter.writerow([self.transport.getPeer().host, mac, rssi, time.asctime(time.localtime(time.time()))])
             if mac in status.keys():
-                if (time.time() - MacLastTime[mac]) >= 300:
+                if (time.time() - MacLastTime[mac]) >= 180:
                     status[mac] = (status[mac] + 1) % 2
                     data = {'mac_id': mac, 'msg': status[mac]}
                     requests.post('http://127.0.0.1:3000/user/attend', data)
