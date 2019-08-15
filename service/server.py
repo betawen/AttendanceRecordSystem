@@ -52,7 +52,10 @@ class Echo(Protocol):
                     status[mac] = (status[mac] + 1) % 2
                     data = {'mac_id': mac, 'msg': status[mac]}
                     requests.post('http://127.0.0.1:3000/user/attend', data)
-                    
+                #elif status[mac] == 1:
+                #    status[mac] = 0
+                #    data = {'mac_id': mac, 'msg': status[mac]}
+                #    requests.post('http://127.0.0.1:3000/user/attend', data)     
             else:
                 status[mac] = 0
                 data = {'mac_id': mac, 'msg': status[mac]}
