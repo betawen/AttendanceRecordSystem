@@ -103,6 +103,7 @@ router.post('/user/register', (req, res) => {
             }
         })
         .catch(err => {
+            res.json({status: 403, msg: 'fobidden'})
             logger.error(err)
             throw err
         })

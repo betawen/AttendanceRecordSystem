@@ -68,7 +68,6 @@ exports.userRegisterLogic = async function (params, option) {
 
 
 exports.userAttendLogic = async function (params, option) {
-
     if(undefined === params.mac_id) {
         throw ERROR_SET.createResponseError(ERROR_SET.REQ_ERROR.USER_ATTEND_WITHOUT_MAC_ID);
     }
@@ -90,11 +89,6 @@ exports.userAttendLogic = async function (params, option) {
         return {status:200, msg: 'user record update'}
     } else {
         let time = new Date().getTime();
-        // let param = {mac_id: params.mac_id.toLocaleLowerCase()};
-        // let user = await userDB.getUserNameByMacId(param);
-        // if(undefined === user){
-        //     return {status:200, msg:'user not exist'};
-        // }
         let newObj = {};
         newObj['mac_id'] = params.mac_id.toLocaleLowerCase();
         newObj['arrive_time'] = time;
@@ -119,10 +113,3 @@ exports.getUserName = async function (params) {
     return userInfo;
 
 }
-
-
-// let obj = new Object();
-// console.log(obj)
-// console.log(obj.__proto__ === Object.prototype)
-// console.log(JSON.stringify(Object.prototype.constructor, null, 4))
-// console.log(Object.prototype)
